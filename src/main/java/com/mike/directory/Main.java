@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Main {
     private static List<City> cities;
-    private static String filePath = "/Users/u19208062/IdeaProjects/CitiesDirectory/src/test/java/com/mike/directory/service/citiesTest.txt";
+    private static String filePath = "city.txt";
 
     public static void main(String[] args) {
         while (true) {

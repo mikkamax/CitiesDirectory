@@ -21,8 +21,8 @@ public class ServiceTest {
 
     List<City> testList = new ArrayList<>(List.of(city1, city2, city3, city4, city5, city6));
 
-    String brokenFile = "/Users/u19208062/IdeaProjects/CitiesDirectory/src/test/java/com/mike/directory/service/brokenFile.txt";
-    String testFile = "/Users/u19208062/IdeaProjects/CitiesDirectory/src/test/java/com/mike/directory/service/citiesTest.txt";
+    String brokenFile = "brokenFile.txt";
+    String testFile = "citiesTest.txt";
 
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
