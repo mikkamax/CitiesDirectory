@@ -12,16 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceTest {
-    City city1 = new City("Байкальск", "Иркутская область", "Сибирский", 13589, 1961);
-    City city2 = new City("Абаза", "Хакасия", "Сибирский", 17111, 1867);
-    City city3 = new City("Арзамас", "Нижегородская область", "Приволжский", 106367, 1552);
-    City city4 = new City("Абакан", "Хакасия", "Сибирский", 165183, 1734);
-    City city5 = new City("Астрахань", "Астраханская область", "Южный", 520662, 1558);
-    City city6 = new City("Абдулино", "Оренбургская область", "Приволжский", 20663, 1795);
+    City city1 = new City("Байкальск", "Иркутская область", "Сибирский", 13589, "1961");
+    City city2 = new City("Абаза", "Хакасия", "Сибирский", 17111, "1867");
+    City city3 = new City("Арзамас", "Нижегородская область", "Приволжский", 106367, "1552");
+    City city4 = new City("Абакан", "Хакасия", "Сибирский", 165183, "1734");
+    City city5 = new City("Астрахань", "Астраханская область", "Южный", 520662, "1558");
+    City city6 = new City("Абдулино", "Оренбургская область", "Приволжский", 20663, "1795");
 
     List<City> testList = new ArrayList<>(List.of(city1, city2, city3, city4, city5, city6));
 
     String brokenFile = "brokenFile.txt";
+    String brokenPath = "dskjfhkj232jkhkdjs";
     String testFile = "citiesTest.txt";
 
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -31,9 +32,18 @@ public class ServiceTest {
         System.setOut(new PrintStream(baos));
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
     public void readFromFileWrongPath() {
+        String expected = "Ошибка! Файл для загрузки не найден.\n";
+        Service.readFromFile(brokenPath);
+        Assert.assertEquals(expected, baos.toString());
+    }
+
+    @Test
+    public void readFromBrokenFile() {
+        String expected = "Ошибка! Неправильный формат файла.\n";
         Service.readFromFile(brokenFile);
+        Assert.assertEquals(expected, baos.toString());
     }
 
     @Test

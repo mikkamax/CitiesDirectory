@@ -19,8 +19,12 @@ public class Main {
 
             switch (module) {
                 case 1:
-                    cities = Service.readFromFile(filePath);
-                    Service.printCities(cities);
+                    String userPath = Service.readPath();
+                    String fileToLoad = userPath.isEmpty() ? filePath : userPath;
+                    cities = Service.readFromFile(fileToLoad);
+                    if (cities != null) {
+                        Service.printCities(cities);
+                    }
                     break;
                 case 2:
                     int sort = Service.sortChooser();

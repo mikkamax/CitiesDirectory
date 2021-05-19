@@ -25,10 +25,10 @@ public class Service {
         while (true) {
             if (consoleScanner.hasNextInt() &&
                     ((input = consoleScanner.nextInt()) >= 0 && input <= 4)) {
+                consoleScanner.nextLine();
                 return input;
             } else {
                 Service.printMessage("Нужно ввести цифру 1-4 или 0. Повторите ввод:");
-                consoleScanner.nextLine();
             }
         }
     }
@@ -44,29 +44,41 @@ public class Service {
         while (true) {
             if (consoleScanner.hasNextInt() &&
                     ((input = consoleScanner.nextInt()) >= 0 && input <= 2)) {
+                consoleScanner.nextLine();
                 return input;
             } else {
-                Service.printMessage("Нужно ввести цифру 1-2 или 0. Повторите ввод:");
-                consoleScanner.nextLine();
+                printMessage("Нужно ввести цифру 1-2 или 0. Повторите ввод:");
             }
         }
     }
 
+    public static String readPath() {
+        Service.printMessage("");
+        printMessage("Введите путь к файлу или нажмите Enter, чтобы загрузить стандартный справочник:");
+        return consoleScanner.nextLine();
+    }
+
     public static List<City> readFromFile(String filePath) {
-        Scanner scanner = null;
+        Scanner scanner;
         try {
             scanner = new Scanner(new File(filePath));
         } catch (FileNotFoundException e) {
             printMessage("Ошибка! Файл для загрузки не найден.");
-            e.printStackTrace();
+            return null;
         }
+
         List<City> citiesList = new ArrayList<>();
         String[] input;
 
 
-        while (scanner.hasNext()) {
-            input = scanner.nextLine().split(";");
-            citiesList.add(new City(input[1], input[2], input[3], Integer.parseInt(input[4]), Integer.parseInt(input[5])));
+        try {
+            while (scanner.hasNext()) {
+                input = scanner.nextLine().split(";");
+                citiesList.add(new City(input[1], input[2], input[3], Integer.parseInt(input[4]), input[5]));
+            }
+        } catch (Exception e) {
+            printMessage("Ошибка! Неправильный формат файла.");
+            return null;
         }
 
         scanner.close();

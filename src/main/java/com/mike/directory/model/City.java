@@ -7,9 +7,9 @@ public class City {
     private String region;
     private String district;
     private int population;
-    private int foundation;
+    private String foundation;
 
-    public City(String name, String region, String district, int population, int foundation) {
+    public City(String name, String region, String district, int population, String foundation) {
         this.name = name;
         this.region = region;
         this.district = district;
@@ -33,7 +33,7 @@ public class City {
         return population;
     }
 
-    public int getFoundation() {
+    public String getFoundation() {
         return foundation;
     }
 
@@ -54,7 +54,7 @@ public class City {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         City city = (City) o;
-        return population == city.population && foundation == city.foundation && Objects.equals(name, city.name) && Objects.equals(region, city.region) && Objects.equals(district, city.district);
+        return population == city.population && Objects.equals(name, city.name) && Objects.equals(region, city.region) && Objects.equals(district, city.district) && Objects.equals(foundation, city.foundation);
     }
 
     @Override
